@@ -61,26 +61,31 @@ exports.listarRegistros = async (req, res) => {
 }
 
 exports.listarRegistrosPorID = async (req, res) => {
-    let agendamento_id = req.params.id;
-
     try {
-        const agendamento = await globalModel.findByPk(agendamento_id);
+        let data= req.params.id;
 
-        if (agendamento) {
+        const global = await globalModel.findAll({
+            where: {
+                Data: data
+            }
+        })        
+
+        if (global) {
             res.status(200).json({
                 status: "ok",
                 message: "usuário encontrado com sucesso!",
+                global
             })
         } else {
             res.status(406).json({
                 status: "erro",
-                message: `Não foi possivel localizar o usuário de id ${agendamento_id}!`
+                message: `Não foi possivel localizar o usuário de id ${data}!`
             })
         }
     } catch (erro) {
         res.status(404).json({
             status: "erro",
-            message: `Erro ao localizar o usuários com id ${agendamento_id}!`
+            message: `Erro ao localizar o usuários com id ${data}!`
         })
     }
 }

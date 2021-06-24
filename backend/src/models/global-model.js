@@ -1,7 +1,7 @@
 const Sequelize = require('../services/conect.mysql').Sequelize;
 const mysql = require('../services/conect.mysql').sequelize;
 
-const agendamentoModel = mysql.define("globais", {
+const globaisModel = mysql.define("globais", {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -38,4 +38,4 @@ const agendamentoModel = mysql.define("globais", {
     },   
 });
 
-module.exports = agendamentoModel
+module.exports = globaisModel

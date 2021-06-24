@@ -1,7 +1,7 @@
-const Sequelize = require('../services/conect.postgres').Sequelize;
-const postgres = require('../services/conect.postgres').sequelize;
+const Sequelize = require('../services/conect.mysql').Sequelize;
+const mysql = require('../services/conect.mysql').sequelize;
 
-const agendamentoModel = postgres.define('countries', {
+const countriesModel = mysql.define('countries', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -9,42 +9,42 @@ const agendamentoModel = postgres.define('countries', {
         primaryKey: true
     },
     Country: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     CountryCode: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     Slug: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     NewConfirmed: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     TotalConfirmed: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     NewDeaths: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     TotalDeaths: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     NewRecovered: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
     TotalRecovered: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
         allowNull: false
     },
 
 });
 
-module.exports = agendamentoModel
+module.exports = countriesModel

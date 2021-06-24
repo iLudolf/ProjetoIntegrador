@@ -16,8 +16,7 @@ const hostname = process.env.APP_HOSTNAME;
 
 const defaultRoutes = require('./routes/default-routes');
 const globalRoutes = require('./routes/global-routes');
-
-
+const countriesRoutes = require('./routes/countries-routes');
 
 //Parsing do conteúdo das requisições 
 app.use(express.urlencoded({
@@ -32,6 +31,7 @@ app.use('/', defaultRoutes);
 
 //Rotas - Postgres
 app.use('/global', globalRoutes);
+app.use('/countries', countriesRoutes);
 
 
 app.listen(port, hostname, () => {

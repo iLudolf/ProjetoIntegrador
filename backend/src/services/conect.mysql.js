@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 // Docker
-const sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USERNAME, process.env.POSTGRES_PASSWORD, {
+const sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USERNAME, process.env.MYSQL_PASSWORD, {
     dialect: 'mysql'
 })
 

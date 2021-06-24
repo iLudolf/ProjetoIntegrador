@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="../img/favicon.png"/>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
+    <script java src="../js/dashboard.js"></script>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <script src="../js/dashboard.js"></script>
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="BootstrapDash">
+
+    <title>COVID - Dashboard </title>
+
+    <!-- vendor css -->
+    <link href="../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+
+    <!-- azia CSS -->
+    <link rel="stylesheet" href="../css/azia.css">
+ 
+  </head>
+
+  <body>
+    <div class="spinner-border justify-content-center" id="loading" style="display: block">
+      <span class="sr-only">Loading...</span>
+    </div>
+   
+    
+<div id="conteudo" style="display: none">  
+<div id="iframe"></div>
+
+  
+  
+
+    <div class="az-header">
+      <div class="container">
+        <div class="az-header-left">
+          <a href="index.html" class="az-logo "><span class="fa-fw ion-md-analytics"></span></a>
+          <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+        </div><!-- az-header-left -->
+        <div class="az-header-menu">
+          <div class="az-header-menu-header">
+            <a href="index.html" class="az-logo"><span></span> azia</a>
+            <a href="" class="close">&times;</a>
+          </div><!-- az-header-menu-header -->
+          <ul class="nav">
+            <li class="nav-item active show">
+              <a href="index.html" class="nav-link"><i class="typcn typcn-world"></i>Global</a>
+            </li>
+          </ul>
+        </div><!-- az-header-menu -->
+        <div class="az-header-right">    
+          
+       
+        </div><!-- az-header-right -->
+      </div><!-- container -->
+    </div><!-- az-header -->
+
+    <div class="az-content az-content-dashboard">
+      <div class="container">
+        <div class="az-content-body">
+          <div class="az-dashboard-one-title">
+            <div>
+              <h2 class="az-dashboard-title">Olá, Bem Vindo!</h2>
+              <p class="az-dashboard-text">Todos os dias, apresentamos os novos casos comunicados desde o dia anterior.</p>
+              <p class="az-dashboard-text" id="idAtualizacao"></p></p>
+            </div>
+            <div class="az-content-header-right">
+              <div class="media">
+                <div class="media-body">
+                  <label >DATA DE INÍCIO</label>
+                  <h6  id="idDataIncio">21/02/2021</h6>
+                </div><!-- media-body -->
+              </div><!-- media -->
+              <div class="media">
+                <div class="media-body">
+                  <label>DATA FINAL</label>
+                  <h6 id="idDataFinal"></h6>
+                </div><!-- media-body -->
+              </div><!-- media -->
+              <div class="media">
+                <div class="media-body">
+                  <label>BASE DE DADOS</label>
+                  <h6>Global</h6>
+                </div><!-- media-body -->
+              </div><!-- media -->
+              <a href="" class="btn btn-purple">Exportar</a>
+            </div>
+          </div><!-- az-dashboard-one-title -->
+
+          <div class="az-dashboard-nav"> 
+            <nav class="nav">
+              <a class="nav-link " href="index.html">Mapa de Casos</a>
+              <a class="nav-link active"  href="global.html">Visão Geral</a>
+            </nav>
+
+            <nav class="nav">
+              <a class="nav-link" href="#"><i class="far fa-save"></i>Salvar o relatorio</a>
+              <a class="nav-link" href="#"><i class="far fa-file-pdf"></i>Exportar para PDF</a>
+              <a class="nav-link" href="#"><i class="fas fa-ellipsis-h"></i></a>
+            </nav>
+          </div>
+
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-7 ht-lg-100p">
+              <div class="card card-dashboard-one">
+                <div class="card-header">
+                  <div>
+                    <h6 class="card-title">Vista Geral de Casos</h6>
+                    <p class="card-text"></p>
+                  </div>
+                  <div class="btn-group">
+                    <button class="btn active">Total de casos</button>
+                    <button  class="btn">Recuperados</button>
+                    <button class="btn"  id="testBTN" onclick=iframe() >Óbitos</button>
+                  
+                  </div>
+                </div><!-- card-header -->
+                <div class="card-body">
+                  <div class="card-body-top">
+                    <div>
+                      <label class="mg-b-0">Total de casos: &nbsp</label>
+                     <b><label id="idTotalDeCasos" class="float-right"> </label></b> 
+                    </div>
+                    <div>
+                      <label class="mg-b-0" >Recuperados: &nbsp</label>
+                     <b><label id="idRecuperados" class="float-right"></label></b> 
+                    </div>
+                    <div>
+                      <label class="mg-b-0" >Óbitos: &nbsp</label>
+                      <b><label id="idObitos" class="float-right"></label></b>
+                    </div>
+                    <div>
+                      <label class="mg-b-0" >Taxa de Mortalidade: &nbsp</label>
+                      <b><label  id="TaxadeMortalidade" class="float-right"></label></b>
+                    </div>
+                  </div><!-- card-body-top -->
+                  <div class="">   
+                    <div id="flotChart" class="flot-chart"><canvas id="flotChart0" ></canvas></div>       
+                     </div><!-- flot-chart-wrapper -->
+                     
+                </div><!-- card-body -->
+               
+              </div><!-- card -->
+              
+              
+            </div><!-- col -->
+            <div class="col-lg-5 mg-t-20 mg-lg-t-0">
+              <div class="row row-sm">
+                <div class="col-sm-6">
+                  <div class="card card-dashboard-two">
+                    <div class="card-header">
+                      <h6 id="porcentAtual"></h6>
+                      <p id="txdEvolucao">Total de casos</p>
+                    </div><!-- card-header -->
+                    <div class="card-body">
+                      <div class="chart-wrapper">
+                        <div id="flotChart1" class="flot-chart"></div>
+                      </div><!-- chart-wrapper -->
+                    </div><!-- card-body -->
+                  </div><!-- card -->
+                </div><!-- col -->
+                <div class="col-sm-6 mg-t-20 mg-sm-t-0">
+                  <div class="card card-dashboard-two">
+                    <div class="card-header">
+                      <h6 id="totaldeCasos">86k </h6>
+                      <p>Novos Casos</p>
+                    </div><!-- card-header -->
+                    <div class="card-body">
+                      <div class="chart-wrapper">
+                        <div  class="flot-chart"><canvas id="flotChart2" ></canvas></div>                      
+                      </div><!-- chart-wrapper -->
+                    </div><!-- card-body -->
+                  </div><!-- card -->
+                </div><!-- col -->
+                <div class="col-sm-12 mg-t-20">
+                  <div class="card card-dashboard-three">
+                    <div class="card-header">
+                      <p>Novos Casos</p>
+                      <h6 id="novosCasos">16,869 </h6>
+                      <small></small>
+                    </div><!-- card-header -->
+                    <div class="card-body">
+                      <div class="chart"><canvas id="chartBar5"></canvas></div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- row -->
+            </div><!--col -->
+          </div><!-- row -->
+
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-4">
+              <div class="card card-dashboard-pageviews">
+                <div class="card-header">
+                  <h6 class="card-title">Novos casos</h6>
+                  <p class="card-text">Países  com maior numero de novos casos.</p>
+                </div><!-- card-header -->
+                <div id="totaldeCasosDash05" class="card-body">
+                  <div class="az-list-item">
+                    <div>
+                      <h6>Admin Home</h6>
+                      <span>/demo/admin/index.html</span>
+                    </div>
+                    <div>
+                      <h6 class="tx-primary">7,755</h6>
+                      <span>31.74% (-100.00%)</span>
+                    </div>
+                  </div><!-- list-group-item -->
+                 </div><!-- card-body -->
+              </div><!-- card -->
+
+            </div> <!-- col -->
+            <div class="col-lg-8 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-four">
+                <div class="card-header">
+                  <h6 class="card-title">Porcentagem total casos confirmados por país</h6>
+                </div><!-- card-header -->
+                <div class="card-body row">
+                  <div class="col-md-6 d-flex align-items-center">
+                    <div class="chart"><canvas id="chartDonut"></canvas></div>
+                  </div><!-- col -->
+                  <div class="col-md-6 col-lg-5 mg-lg-l-auto mg-t-20 mg-md-t-0" id="teste">
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span id="pais0">Organic Search</span>
+                        <span id="paistotal0">1,320 <span></span></span>
+                      </div>
+                      <div class="progress" id="paisProgressBar0">
+                        <!-- <div class="progress-bar bg-purple wd-25p" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> -->
+                      </div><!-- progress -->
+                    </div>
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span>Email</span>
+                        <span>987 <span>(20%)</span></span>
+                      </div>
+                      <div class="progress">
+                        <!-- <div class="progress-bar bg-primary wd-20p" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div> -->
+                      </div><!-- progress -->
+                    </div>
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span>Referral</span>
+                        <span>2,010 <span>(30%)</span></span>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar bg-info wd-30p" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div><!-- progress -->
+                    </div>
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span>Social</span>
+                        <span>654 <span>(15%)</span></span>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar bg-teal wd-15p" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div><!-- progress -->
+                    </div>
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span>Other</span>
+                        <span>400 <span>(10%)</span></span>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar bg-gray-500 wd-10p" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div><!-- progress -->
+                    </div>
+                  </div><!-- col -->
+                </div><!-- card-body -->
+              </div><!-- card-dashboard-four -->
+            </div><!-- col 98 -->
+          </div><!-- row -->
+
+          <div class="row row-sm mg-b-20 mg-lg-b-0">
+            <div class="col-lg-5 col-xl-4">
+              <div class="row row-sm">
+                <div class="col-md-6 col-lg-12 mg-b-20 mg-md-b-0 mg-lg-b-20">
+                  <div class="card card-dashboard-five">
+                    <div class="card-header">
+                      <h6 class="card-title">Estatísticas</h6>
+                      <span class="card-text" id="infT"></span>
+                    </div><!-- card-header -->
+                    <div class="card-body row row-sm">
+                      <div class="col-6 d-sm-flex align-items-center" id="peityBarNovosCasos">                       
+                      </div><!-- col -->
+                      <div class="col-6 d-sm-flex align-items-center" id="peityBarTotalCasos">                        
+                      </div><!-- col -->
+                    </div><!-- card-body -->
+                  </div><!-- card-dashboard-five -->
+                </div><!-- col -->
+
+                
+               
+              </div><!-- row -->
+            </div><!-- col-lg-3 -->
+            <div class="col-lg-7 col-xl-8 mg-t-20 mg-lg-t-0">
+              <div class="card card-table-one">
+                <h6 class="card-title">Mapa do coronavírus pelo mundo</h6>
+                <p class="az-content-text mg-b-20">Todos os países em ordem descrecente de casos confirmados.</p>
+                <div class="table-responsive">
+                 <div id="container">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="wd-5p">&nbsp;</th>
+                        <th class="wd-45p">Pais</th>
+                        <th>Total de Casos</th>
+                        <th>Recuperados</th>
+                        <th>Óbitos</th>
+                      </tr>
+                    </thead>
+                    <tbody id="idPais">
+                      <!-- <tr>
+                        <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
+                        <td><strong>United States</strong></td>
+                        <td><strong>134</strong> (1.51%)</td>
+                        <td>33.58%</td>
+                        <td>15.47%</td>
+                      </tr> -->
+                    
+                    </tbody>
+                  </table>
+                </div>
+                </div><!-- table-responsive -->
+              </div><!-- card -->
+            </div><!-- col-lg -->
+
+          </div><!-- row -->
+        </div><!-- az-content-body -->
+      </div>
+    </div><!-- az-content -->
+
+    
+  <div id="00"></div>
+  
+
+    <div class="az-footer ht-40">
+      <div class="container ht-100p pd-t-0-f">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©iLudolf 2021</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Endereço <a href="https://iludolf.github.io/" target="_blank">Repositório Git</a> @iLudolf</span>
+      </div><!-- container -->
+    </div><!-- az-footer -->    
+    
+  </div> 
+  
+ 
+
+ 
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/ionicons/ionicons.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../lib/peity/jquery.peity.min.js"></script>
+
+    <!-- arquivo de configuração JS     -->
+    <script src="../js/dashboard.js"></script>
+
+    <script> 
+      
+  var $login = $("#iframe")
+  $button = $("#testBTN");
+  
+
+
+$button.on("click",function(){  
+  $button.prop('disabled',true);
+    $login.slideDown(300,function(){         
+        $button.prop('disabled',false);
+       
+        $(document).on('click.slideForm',function(e){         
+            e = [e.target.id,e.target.parentNode.id].join('');
+        
+         
+            if (e !== 'iframe') {
+                $login.hide('fast');                 
+                $(this).off('click.slideForm');
+            }
+            
+        })
+    });
+});
+    </script>
+  
+     </body>
+</html>

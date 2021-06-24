@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mapa Ccoronavirus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- icon -->
+    <link rel="icon" type="image/png" href="../img/favicon.png"/> 
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <style>
+      #mapid {
+        margin: 0 auto;
+        height: 650px;
+        width: 650px;
+      }
+
+    #container {
+    height: 630px;
+    overflow-y: scroll;
+  }
+
+          
+    </style>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
+<script java src="../js/dashboard.js"></script>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<!-- Meta -->
+<meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+<meta name="author" content="BootstrapDash">
+
+ <!-- vendor css -->
+ <link href="../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+ <link href="../lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+
+ <!--  CSS -->
+ <link rel="stylesheet" href="../css/azia.css">
+
+    
+  </head>
+  <body>
+    <!-- <div class="spinner-border justify-content-center" id="loading" style="display: block">
+      <span class="sr-only">Loading...</span>
+    </div>  -->
+
+    <div id="conteudo" style="display: block">
+      <div class="az-header">
+        <div class="container">
+          <div class="az-header-left">
+            <a href="index.html" class="az-logo "><span class="fa-fw ion-md-analytics"></span></a>
+            <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+          </div><!-- az-header-left -->
+          <div class="az-header-menu">
+            <div class="az-header-menu-header">
+              <a href="index.html" class="az-logo"><span></span> azia</a>
+              <a href="" class="close">&times;</a>
+            </div><!-- az-header-menu-header -->
+            <ul class="nav">
+              <li class="nav-item active show">
+                <a href="index.html" class="nav-link"><i class="typcn typcn-world"></i>Global</a>
+              </li>             
+              
+            </ul>
+          </div><!-- az-header-menu -->
+          <div class="az-header-right">
+           
+            <div class="az-header-message">
+            </div><!-- az-header-message -->
+            <div class="dropdown az-header-notification">
+               <div class="dropdown-menu">
+                <div class="az-dropdown-header mg-b-20 d-sm-none">
+                  <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                </div>               
+            </div><!-- az-header-notification -->
+         
+          </div><!-- az-header-right -->
+        </div><!-- container -->
+      </div><!-- az-header -->
+  
+      <div class="az-content az-content-dashboard">
+        <div class="container">
+          <div class="az-content-body">
+            <div class="az-dashboard-one-title">
+              <div>
+                <h2 class="az-dashboard-title">Coronavírus (COVID-19)</h2>
+                <p class="az-dashboard-text">Todos os dias, apresentamos os novos casos comunicados desde o dia anterior.</p>
+                <p class="az-dashboard-text" id="idAtualizacao"></p></p>
+              </div>
+              <div class="az-content-header-right">
+                <div class="media">
+                  <div class="media-body">
+                    <label >DATA DE INÍCIO</label>
+                    <h6  id="idDataIncio">21/02/2021</h6>
+                  </div><!-- media-body -->
+                </div><!-- media -->
+                <div class="media">
+                  <div class="media-body">
+                    <label>DATA FINAL</label>
+                    <h6 id="idDataFinal"></h6>
+                  </div><!-- media-body -->
+                </div><!-- media -->
+                <div class="media">
+                  <div class="media-body">
+                    <label>BASE DE DADOS</label>
+                    <h6>Global</h6>
+                  </div><!-- media-body -->
+                </div><!-- media -->
+                <a href="" class="btn btn-purple">Exportar</a>
+              </div>
+            </div><!-- az-dashboard-one-title -->
+  
+            <div class="az-dashboard-nav"> 
+              <nav class="nav">
+                <a class="nav-link active"  href="index.html">Mapa de casos</a>
+                <a class="nav-link "  href="global.html">Visão Geral</a>
+              </nav>
+  
+              <nav class="nav">
+                <a class="nav-link" href="#"><i class="far fa-save"></i>Salvar o relatorio</a>
+                <a class="nav-link" href="#"><i class="far fa-file-pdf"></i>Exportar para PDF</a>
+                <a class="nav-link" href="#"><i class="fas fa-ellipsis-h"></i></a>
+              </nav>
+            </div>
+  
+             <div class="row row-sm mg-b-20">
+              <div class="card card-dashboard-one">
+                <div class="card-header">                
+                 <div>
+                  <!-- <h1>Mapa do Coronavirus</h1> -->
+                  <div class="table-responsive">
+                    <div id="container">
+                  <table class="table" >
+                    <thead>
+                      <tr>
+                        <th class="wd-5p">&nbsp;</th>
+                        <th class="wd-45p">Pais</th>
+                        <th>Total de Casos</th>
+                        </tr>
+                    </thead>
+                  <tbody id="tableCountries">
+                       <tr>
+                        <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
+                        <td><strong>United States</strong></td>
+                        <td><strong>134</strong> (1.51%)</td>
+                        <td>33.58%</td>
+                        <td>15.47%</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+                 </div>                  
+                  <div id="mapid"></div>  
+              </div>
+             
+              </div>
+             </div>
+  
+   
+  
+            
+          </div><!-- az-content-body -->
+        </div>
+      </div><!-- az-content -->
+  
+      <div class="az-footer ht-40">
+        <div class="container ht-100p pd-t-0-f">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©iLudolf 2021</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Endereço <a href="https://iludolf.github.io/" target="_blank">Repositório Git</a> @iLudolf</span>
+        </div><!-- container -->
+      </div><!-- az-footer -->
+    </div> 
+
+
+
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/ionicons/ionicons.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../lib/peity/jquery.peity.min.js"></script>
+
+    <script src="../js/03-25-2020.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
