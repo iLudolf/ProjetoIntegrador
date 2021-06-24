@@ -1,4 +1,5 @@
-const globalModel = require('../models/global-model');
+const { globalModel, Op } = require('../models/global-model');
+
 
 exports.adicionarRegistro = (req, res) => {
     globalModel.find((error, agendamentos) => {
@@ -46,8 +47,8 @@ exports.adicionarRegistro = (req, res) => {
 exports.listarRegistros = async (req, res) => {
 
     try {
-        const global = await globalModel.findAll();
-        res.setHeader('Access-Control-Allow-Origin', '*');
+        const global = await globalModel.findAll({     });
+        
         res.status(200).json({
             status: 'OK',
             global
@@ -62,13 +63,13 @@ exports.listarRegistros = async (req, res) => {
 
 exports.listarRegistrosPorID = async (req, res) => {
     try {
-        let data= req.params.id;
+        let data = req.params.id;
 
         const global = await globalModel.findAll({
             where: {
-                Data: data
+                data: { [Op.startsWith]: `${req.params.id}` }
             }
-        })        
+        })
 
         if (global) {
             res.status(200).json({

@@ -1,4 +1,6 @@
 const Sequelize = require('../services/conect.mysql').Sequelize;
+const Op = Sequelize.Op;
+
 const mysql = require('../services/conect.mysql').sequelize;
 
 const countriesModel = mysql.define('countries', {
@@ -44,7 +46,11 @@ const countriesModel = mysql.define('countries', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    Data: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
 
 });
 
-module.exports = countriesModel
+module.exports = { countriesModel, Op }

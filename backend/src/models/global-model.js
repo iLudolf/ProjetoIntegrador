@@ -1,5 +1,8 @@
 const Sequelize = require('../services/conect.mysql').Sequelize;
+const Op = Sequelize.Op;
+
 const mysql = require('../services/conect.mysql').sequelize;
+
 
 const globaisModel = mysql.define("globais", {
     id: {
@@ -38,4 +41,4 @@ const globaisModel = mysql.define("globais", {
     },   
 });
 
-module.exports = globaisModel
+module.exports = { globaisModel, Op } 

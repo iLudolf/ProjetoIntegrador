@@ -478,7 +478,7 @@ function Dashboard05() {
     .then(data => {
 
 
-
+    
 
 
 
@@ -491,16 +491,16 @@ function Dashboard05() {
 
 
       for (var i = 0; i <= 4; i++) {
-        dashdata.push(data[i].Country);
+        dashdata.push(data.global[i].Country);
 
-        var valores = abreviarNum(data[i].TotalConfirmed).replace("M", " ");
+        var valores = abreviarNum(data.global[i].TotalConfirmed).replace("M", " ");
         var dataValores = valores.replace(",", ".");
 
 
 
         dadosPais += '<div class="az-traffic-detail-item">' +
           '<div>' +
-          '<span>' + data[i].Country + '</span>' +
+          '<span>' + data.global[i].Country + '</span>' +
           '<span>' + abreviarNum(data[i].TotalConfirmed) + '<span></span></span>' +
           '</div>' +
           '<div class="progress">' +
@@ -515,8 +515,8 @@ function Dashboard05() {
           '<span>Total casos confirmados</span>' +
           '</div>' +
           '<div>' +
-          '<h6 class="tx-primary">' + abreviarNum(data[i].NewConfirmed) + '</h6>' +
-          '<span>' + abreviarNum(data[i].TotalConfirmed) + '</span>' +
+          '<h6 class="tx-primary">' + abreviarNum(data.global[i].NewConfirmed) + '</h6>' +
+          '<span>' + abreviarNum(data.global[i].TotalConfirmed) + '</span>' +
           '</div>' +
           '</div>';
 
@@ -524,7 +524,7 @@ function Dashboard05() {
 
       document.querySelector("#totaldeCasosDash05").innerHTML = infdados;
       document.querySelector("#teste").innerHTML = dadosPais;
-
+ 
       // Donut Chart
       var datapie = {
         labels: dashdata,

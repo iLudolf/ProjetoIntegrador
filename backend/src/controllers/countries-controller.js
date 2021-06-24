@@ -1,4 +1,5 @@
-const countriesModel = require('../models/countries-model');
+const { countriesModel, Op } = require('../models/countries-model');
+
 
 exports.adicionarRegistro = (req, res) => {
     countriesModel.find((error, agendamentos) => {
@@ -46,47 +47,52 @@ exports.adicionarRegistro = (req, res) => {
 exports.listarRegistros = async (req, res) => {
 
     try {
-        const global = await countriesModel.findAll();
-        res.setHeader('Access-Control-Allow-Origin', '*');
+        const countries = await countriesModel.findAll({
+
+        });
+
         res.status(200).json({
-            status: 'OK',
-            global
+            status: "ok",
+            message: countries,
+
         })
+
+
     } catch (error) {
         res.status(404).json({
             status: 'erro',
-            message: 'Não foi possível recuperar os dados globais' + error
+            message: `Ops! Encontramos um erro, enviei essa mensagem para o suporte. ${error}`
         })
+    } finally {
+        console.log("Log")
     }
 }
 
 exports.listarRegistrosPorID = async (req, res) => {
+ 
+    const DataValue = req.params.id
+    console.log(DataValue)
     try {
-        let data= req.params.id;
-
-        const global = await globalModel.findAll({
+        const countries = await countriesModel.findAll({
             where: {
-                Data: data
+                data: { [Op.startsWith]: `${req.params.id}` }
             }
-        })        
+        });
 
-        if (global) {
-            res.status(200).json({
-                status: "ok",
-                message: "usuário encontrado com sucesso!",
-                global
-            })
-        } else {
-            res.status(406).json({
-                status: "erro",
-                message: `Não foi possivel localizar o usuário de id ${data}!`
-            })
-        }
-    } catch (erro) {
-        res.status(404).json({
-            status: "erro",
-            message: `Erro ao localizar o usuários com id ${data}!`
+        res.status(200).json({
+            status: "ok",
+            global: countries,
+
         })
+
+
+    } catch (error) {
+        res.status(404).json({
+            status: 'erro',
+            message: `Ops! Encontramos um erro, enviei essa mensagem para o suporte. ${error}`
+        })
+    } finally {
+        console.log("Log")
     }
 }
 
