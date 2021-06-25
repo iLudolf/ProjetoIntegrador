@@ -1,4 +1,4 @@
-const { countriesModel, Op } = require('../models/countries-model');
+const { countriesModel, Op, sequelize } = require('../models/countries-model');
 
 
 exports.adicionarRegistro = (req, res) => {
@@ -69,14 +69,16 @@ exports.listarRegistros = async (req, res) => {
 }
 
 exports.listarRegistrosPorID = async (req, res) => {
- 
+
     const DataValue = req.params.id
     console.log(DataValue)
     try {
         const countries = await countriesModel.findAll({
             where: {
-                data: { [Op.startsWith]: `${req.params.id}` }
-            }
+                data: { [Op.startsWith]: `${req.params.id}` },                 
+            },
+            order: [['TotalConfirmed', 'DESC']] 
+                   
         });
 
         res.status(200).json({

@@ -16,4 +16,5 @@ const sincronizarPostgres = async () => {
 }
 
 
+
 module.exports = { sequelize, Sequelize, sincronizarPostgres };

@@ -8,8 +8,4 @@ router.get('/', globalController.listarRegistros);
 
 router.get('/:id', globalController.listarRegistrosPorID);
 
-router.put('/:id', globalController.atualizarRegistros);
-
-router.delete('/:id', globalController.removerRegistros);
-
 module.exports = router;

@@ -1,5 +1,6 @@
-const Sequelize = require('../services/conect.mysql').Sequelize;
+const { Sequelize, sequelize  }= require('../services/conect.mysql').Sequelize;
 const Op = Sequelize.Op;
+
 
 const mysql = require('../services/conect.mysql').sequelize;
 
@@ -53,4 +54,6 @@ const countriesModel = mysql.define('countries', {
 
 });
 
-module.exports = { countriesModel, Op }
+
+
+module.exports = { countriesModel, Op,sequelize }

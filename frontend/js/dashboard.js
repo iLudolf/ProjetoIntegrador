@@ -452,7 +452,7 @@ function Dashboard05() {
   //  var minutos = dataAtual.getMinutes();
 
 
-
+console.log(dataAtualFormatada())
 
 
   const url = `http://localhost:3000/countries/${dataAtualFormatada()}`;
@@ -501,7 +501,7 @@ function Dashboard05() {
         dadosPais += '<div class="az-traffic-detail-item">' +
           '<div>' +
           '<span>' + data.global[i].Country + '</span>' +
-          '<span>' + abreviarNum(data[i].TotalConfirmed) + '<span></span></span>' +
+          '<span>' + abreviarNum(data.global[i].TotalConfirmed) + '<span></span></span>' +
           '</div>' +
           '<div class="progress">' +
           '<div class="progress-bar ' + color[i] + ' "style="width: ' + parseInt(dataValores) + '%" ></div>' +
@@ -511,7 +511,7 @@ function Dashboard05() {
 
         infdados += '<div class="az-list-item">' +
           '<div>' +
-          '<h6>' + data[i].Country + '</h6>' +
+          '<h6>' + data.global[i].Country + '</h6>' +
           '<span>Total casos confirmados</span>' +
           '</div>' +
           '<div>' +
@@ -529,7 +529,7 @@ function Dashboard05() {
       var datapie = {
         labels: dashdata,
         datasets: [{
-          data: [data[0].TotalConfirmed, data[1].TotalConfirmed, data[2].TotalConfirmed, data[3].TotalConfirmed, data[4].TotalConfirmed],
+          data: [data.global[0].TotalConfirmed, data.global[1].TotalConfirmed, data.global[2].TotalConfirmed, data.global[3].TotalConfirmed, data.global[4].TotalConfirmed],
           backgroundColor: ['#6f42c1', '#007bff', '#17a2b8', '#00cccc', '#adb2bd']
         }]
       };
@@ -593,7 +593,7 @@ function PorcentagemDeCasosRecuperadas() {
         `</div>` +
         `<div>` +
         `<label>Total de Casos</label>` +
-        `<h4>${abreviarNum(data[0].TotalConfirmed)}</h4>` +
+        `<h4>${abreviarNum(data.global[0].TotalConfirmed)}</h4>` +
         `</div>`;
 
       document.getElementById('peityBarNovosCasos').innerHTML = dadosTotalCasos;
@@ -604,7 +604,7 @@ function PorcentagemDeCasosRecuperadas() {
         `</div>` +
         `<div>` +
         `<label>Novos Casos</label>` +
-        `<h4>${abreviarNum(data[0].NewConfirmed)}</h4>` +
+        `<h4>${abreviarNum(data.global[0].NewConfirmed)}</h4>` +
         `</div>`;
 
       document.getElementById('peityBarTotalCasos').innerHTML = dadosNovosCasos;
@@ -643,19 +643,19 @@ function tableCountries() {
     //Retorno fetch
     .then(data => {
 
-      const num = data.length - 1;
-      console.log(data[num].Country);
+      const num = data.global.length - 1;
+      console.log(data.global[num].Country);
       var paises = "";
 
 
-      for (key in data) {
+      for (key in data.global) {
 
         paises += '<tr>' +
-          '<td><i class="flag-icon flag-icon-' + data[key].CountryCode.toLowerCase() + ' flag-icon-squared"></i></td>' +
-          '<td><strong>' + data[key].Country + '</strong></td>' +
-          '<td><strong>' + abreviarNum(data[key].TotalConfirmed) + '</strong></td>' +
-          '<td>' + abreviarNum(data[key].TotalRecovered) + '</td>' +
-          '<td>' + abreviarNum(data[key].TotalDeaths) + '</td>' +
+          '<td><i class="flag-icon flag-icon-' + data.global[key].CountryCode.toLowerCase() + ' flag-icon-squared"></i></td>' +
+          '<td><strong>' + data.global[key].Country + '</strong></td>' +
+          '<td><strong>' + abreviarNum(data.global[key].TotalConfirmed) + '</strong></td>' +
+          '<td>' + abreviarNum(data.global[key].TotalRecovered) + '</td>' +
+          '<td>' + abreviarNum(data.global[key].TotalDeaths) + '</td>' +
           '</tr>';
 
 

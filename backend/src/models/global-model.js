@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const mysql = require('../services/conect.mysql').sequelize;
 
 
-const globaisModel = mysql.define("globais", {
+const globaisModel = mysql.define('globais', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
