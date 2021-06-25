@@ -1,3 +1,53 @@
+(() =>{
+
+    
+  // Conexão com a API 
+  fetch(`http://localhost:3000/countries/${dataAtualFormatada()}`,{
+    method:'GET',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8' ,
+        'X-Access-Token': '5cf9dfd5-3449-485e-b5ae-70a60e997864', 
+        'Accept': 'application/json',        
+        'mode': 'cors',
+        'Access-Control-Allow-Origin': 'http://127.0.0.1:5500/' // solicitações sem credenciais , o valor literal "*" 
+               
+ }})
+
+ .then(response => {
+   return response.json();
+   
+ })
+ 
+  //Retorno fetch
+  .then(data =>{   
+    const num = data.length-1;
+   
+    // // Pegar data da atualização
+    var aux = ""+data[num].Data
+    
+   
+
+  
+      
+}); // fim do fetch 
+
+})//fim da função
+
+  
+function dataAtualFormatada() {
+  var data = new Date(),
+    dia = data.getDate().toString(),
+    diaF = (dia.length == 1) ? '0' + dia : dia,
+    mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+    mesF = (mes.length == 1) ? '0' + mes : mes,
+    anoF = data.getFullYear();
+  return anoF + "-" + mesF + "-" + diaF;
+}
+
+  
+
+  
+
 const data = [
   {
     "FIPS": 45001,

@@ -48,7 +48,7 @@ $(function(){
 
 
   function tableCountries() {
-  const url = `https://iludolf.ddns.net:3000/countries/${dataAtualFormatada()}`; 
+  const url = `http://localhost:3000/countries/${dataAtualFormatada()}`; 
   
    fetch(url,{
    method:'GET',
@@ -69,17 +69,17 @@ $(function(){
  //Retorno fetch
  .then(data =>{   
   
-   const num = data.length-1;
-   console.log(data[num].Country);
+   const num = data.global.length-1;
+   console.log(data.global[num].Country);
    var paises = "";
      
 
-    for (key in data) {         
+    for (key in data.global) {         
      
       paises += '<tr>'+
-     '<td><i class="flag-icon flag-icon-'+data[key].CountryCode.toLowerCase()+' flag-icon-squared"></i></td>'+
-     '<td><strong>'+data[key].Country+'</strong></td>'+
-     '<td><strong>'+abreviarNum(data[key].TotalConfirmed)+'</strong></td>'+
+     '<td><i class="flag-icon flag-icon-'+data.global[key].CountryCode.toLowerCase()+' flag-icon-squared"></i></td>'+
+     '<td><strong>'+data.global[key].Country+'</strong></td>'+
+     '<td><strong>'+abreviarNum(data.global[key].TotalConfirmed)+'</strong></td>'+
      '</tr>'; }
 
     document.querySelector("#tableCountries").innerHTML = paises;
