@@ -205,10 +205,11 @@ function Dashboard02() {
 
       //Preencher base de dados
       for (indice in data.global) {
-        dashData2.push([data.global[indice].ID, data.global[indice].TotalConfirmed])
+        dashData2.push([data.global[indice].id, data.global[indice].TotalConfirmed])
 
       }
 
+      console.log(data.global)
       // console.table(dashData2)
 
       $.plot('#flotChart1', [{
@@ -231,11 +232,11 @@ function Dashboard02() {
         yaxis: {
           show: false,
           min: 0,
-          max: data[num].TotalConfirmed,
+          max: data.global[num].TotalConfirmed,
         },
         xaxis: {
           show: false,
-          max: data.length,
+          max: data.global.length,
         }
       }); // fim do Dashboard 02 
 
@@ -265,7 +266,7 @@ function Dashboard03() {
     //Retorno fetch
     .then(data => {
 
-      const num = data.length - 1;
+      const num = data.global.length - 1;
 
       //Base de dados        
       var dashData3 = [];
@@ -273,10 +274,11 @@ function Dashboard03() {
 
       //Preencher base de dados
       for (indice in data) {
-        dashData3.push(data[indice].NewConfirmed)
-        dashData2.push(data[indice].Data.substring(0, 10))
+        dashData3.push(data.global[indice].NewConfirmed)
+        dashData2.push(data.global[indice].Data.substring(0, 10))       
       }
 
+      
       //Calcular taxa de NOVOS  casos
       var calcularPorcentAtualNew = "" + (((data.global[num].NewConfirmed - data.global[num - 1].NewConfirmed) / data.global[num - 1].NewConfirmed) * 100);
 
@@ -286,7 +288,7 @@ function Dashboard03() {
         // console.log("Numero de casos é maior" )
         document.querySelector("#totaldeCasos").innerHTML = data.global[num].NewConfirmed.substring(0, 3) + " mil" + '<i id="icoPorcentAtual" class="icon ion-md-trending-up tx-success"></i> <small>' + calcularPorcentAtualNew.substring(0, 2) + '%</small>';
 
-      } if (data[num].NewConfirmed < data[num - 1].NewConfirmed) {
+      } if (data.global[num].NewConfirmed < data.global[num - 1].NewConfirmed) {
         // console.log("Numero de casos é menor" )
         document.querySelector("#totaldeCasos").innerHTML = data.global[num].NewConfirmed.substring(0, 3) + " mil" + '<i id="icoPorcentAtual" class="icon ion-md-trending-down tx-danger"></i> <small>' + calcularPorcentAtualNew.substring(0, 2) + '%</small>';
 
